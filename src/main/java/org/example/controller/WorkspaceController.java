@@ -4,9 +4,11 @@ import org.example.dto.WorkspaceData;
 import org.example.exception.WorkspaceException;
 import org.example.service.WorkspaceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.function.ServerRequest;
 
 @RestController
 @CrossOrigin
@@ -18,9 +20,15 @@ public class WorkspaceController {
     }
     @PostMapping("/workspace")
     public ResponseEntity<WorkspaceData> postWorkspace(@RequestBody WorkspaceData workspaceData){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
+        headers.add("Access-Control-Allow-Methods", "*");
+        headers.add("Access-Control-Allow-Headers", "*");
         try{
             WorkspaceData result = workspaceService.createWorkspace(workspaceData);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .body(result);
         } catch (WorkspaceException e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
