@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = {"http://172.191.162.100:3000", "http://localhost:3000"})
 public class WorkspaceController {
     WorkspaceService workspaceService;
     @Autowired
@@ -16,7 +17,6 @@ public class WorkspaceController {
         this.workspaceService = workspaceService;
     }
     @PostMapping("/workspace")
-    @CrossOrigin
     public ResponseEntity<WorkspaceData> postWorkspace(@RequestBody WorkspaceData workspaceData){
         try{
             WorkspaceData result = workspaceService.createWorkspace(workspaceData);
@@ -26,7 +26,6 @@ public class WorkspaceController {
         }
     }
     @DeleteMapping("/workspace/{name}")
-    @CrossOrigin
     public ResponseEntity<WorkspaceData> deleteWorkspace(@PathVariable String name){
         try {
             workspaceService.deleteWorkspace(name);
