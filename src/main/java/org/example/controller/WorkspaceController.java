@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.function.ServerRequest;
 
 @RestController
-@CrossOrigin
 public class WorkspaceController {
     WorkspaceService workspaceService;
     @Autowired
@@ -21,7 +20,7 @@ public class WorkspaceController {
     @PostMapping("/workspace")
     public ResponseEntity<WorkspaceData> postWorkspace(@RequestBody WorkspaceData workspaceData){
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Access-Control-Allow-Origin", "*");
+        headers.add("Access-Control-Allow-Origin", "http://172.191.162.100:3000");
         headers.add("Access-Control-Allow-Methods", "*");
         headers.add("Access-Control-Allow-Headers", "*");
         try{
