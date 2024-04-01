@@ -41,7 +41,7 @@ public class WorkspaceService {
             String out = cmdService.runCommandReturnOutput(cmd);
             System.out.println(out);
             Workspace workspace = new Workspace(requestedWorkspace.getUserId(), requestedWorkspace.getLab(),
-                    "http://172.191.162.100/:"+portCounter, "workspace"+portCounter);
+                    "http://172.191.162.100:"+portCounter, "workspace"+portCounter);
             workspace = workspaceRepository.save(workspace);
             WorkspaceData dto = new WorkspaceData(workspace.getId(), workspace.getUserId(), workspace.getLab(),
                     workspace.getUrl(), workspace.getContainerName());
