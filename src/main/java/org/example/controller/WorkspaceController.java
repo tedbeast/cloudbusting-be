@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = {"http://localhost:3000", "http://172.191.162.100:3000", "localhost:3000"})
+@CrossOrigin(origins = "*")
 public class WorkspaceController {
     WorkspaceService workspaceService;
     @Autowired
