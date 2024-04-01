@@ -18,7 +18,7 @@ public class WorkspaceController {
     public WorkspaceController(WorkspaceService workspaceService){
         this.workspaceService = workspaceService;
     }
-    @RequestMapping(method = RequestMethod.OPTIONS)
+    /**@RequestMapping(method = RequestMethod.OPTIONS)
     public ResponseEntity<Object> cors(){
         HttpHeaders headers = new HttpHeaders();
         headers.add("Access-Control-Allow-Origin", "*");
@@ -27,7 +27,7 @@ public class WorkspaceController {
         return ResponseEntity.ok()
                 .headers(headers)
                 .body(null);
-    }
+    }**/
     @PostMapping("/workspace")
     public ResponseEntity<WorkspaceData> postWorkspace(@RequestBody WorkspaceData workspaceData){
         HttpHeaders headers = new HttpHeaders();
