@@ -11,11 +11,22 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.function.ServerRequest;
 
 @RestController
+@CrossOrigin
 public class WorkspaceController {
     WorkspaceService workspaceService;
     @Autowired
     public WorkspaceController(WorkspaceService workspaceService){
         this.workspaceService = workspaceService;
+    }
+    @RequestMapping(method = RequestMethod.OPTIONS)
+    public ResponseEntity<Object> cors(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
+        headers.add("Access-Control-Allow-Methods", "*");
+        headers.add("Access-Control-Allow-Headers", "*");
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(null);
     }
     @PostMapping("/workspace")
     public ResponseEntity<WorkspaceData> postWorkspace(@RequestBody WorkspaceData workspaceData){
